@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateDesignMode : MonoBehaviour
+public class DM01State : MonoBehaviour
 {
     private void Start()
     {
@@ -18,15 +18,15 @@ public class StateDesignMode : MonoBehaviour
 
 public class Contex
 {
-    private IState m_state;//m代表member
+    private IState mstate;//m代表member
     public void SetState(IState state)
     {
-        m_state = state;
+        mstate = state;
     }
 
     public void Handle(int arg)
     {
-        m_state.Handle(arg);
+        mstate.Handle(arg);
     }
 }
 
@@ -37,10 +37,10 @@ public interface IState
 
 public class ConcreteStateA : IState
 {
-    private Contex m_contex;
+    private Contex mContex;
     public ConcreteStateA(Contex contex)
     {
-        m_contex = contex;
+        mContex = contex;
     }
 
     public void Handle(int args)
@@ -48,24 +48,24 @@ public class ConcreteStateA : IState
         Debug.Log("ConcreteStateA.Handle " + args);
         if(args > 10)
         {
-            m_contex.SetState(new ConcreteStateB(m_contex));
+            mContex.SetState(new ConcreteStateB(mContex));
         }
     }
 }
 
 public class ConcreteStateB : IState
 {
-    private Contex m_contex;
+    private Contex mContex;
     public ConcreteStateB(Contex contex)
     {
-        m_contex = contex;
+        mContex = contex;
     }
     public void Handle(int args)
     {
         Debug.Log("ConcreteStateB.Handle " + args);
         if((args <= 10))
         {
-            m_contex.SetState(new ConcreteStateA(m_contex));
+            mContex.SetState(new ConcreteStateA(mContex));
         }
     }
 }
