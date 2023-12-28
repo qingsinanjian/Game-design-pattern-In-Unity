@@ -2,11 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponGun :IWeapon
+public class WeaponGun : IWeapon
 {
-    public override void Fire(Vector3 targetPosition)
+    protected override void PlayBulletEffect(Vector3 targetPoisition)
     {
-        Debug.Log("显示特效 Gun");
-        Debug.Log("播放声音 Gun");
+        DoPlayBulletEffect(0.05f, targetPoisition);
+    }
+
+    protected override void PlaySound()
+    {
+        DoPlaySound("GunShot");
+    }
+
+    protected override void SetEffectDisplayTime()
+    {
+        mEffectDisplayTime = 0.2f;
     }
 }

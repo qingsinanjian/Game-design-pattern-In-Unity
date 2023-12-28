@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class WeaponLaser : IWeapon
 {
-    public override void Fire(Vector3 targetPoisition)
+    protected override void PlayBulletEffect(Vector3 targetPoisition)
     {
-        Debug.Log("显示特效 Laser");
-        Debug.Log("播放声音 Laser");
+        throw new System.NotImplementedException();
+    }
+
+    protected override void PlaySound()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void SetEffectDisplayTime()
+    {
+        throw new System.NotImplementedException();
     }
 }

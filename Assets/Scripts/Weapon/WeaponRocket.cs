@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class WeaponRocket : IWeapon
 {
-    public override void Fire(Vector3 targetPosition)
+    protected override void PlayBulletEffect(Vector3 targetPoisition)
     {
-        Debug.Log("显示特效 Rocket");
-        Debug.Log("播放声音 Rocket");
+        DoPlayBulletEffect(0.3f, targetPoisition);
+    }
+
+    protected override void PlaySound()
+    {
+        DoPlaySound("RocketShot");
+    }
+
+    protected override void SetEffectDisplayTime()
+    {
+        mEffectDisplayTime = 0.4f;
     }
 }

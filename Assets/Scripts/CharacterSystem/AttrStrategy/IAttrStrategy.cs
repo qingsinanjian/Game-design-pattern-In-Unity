@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IAttrStrategy
 {
-    public int GetExtraHPValue(int lv);
-    public int GetDmgDescValue(int lv);
-    public int GetCritDmg(int critRate);
+    int GetExtraHPValue(int lv);
+    int GetDmgDescValue(int lv);
+    int GetCritDmg(int critRate);
 }

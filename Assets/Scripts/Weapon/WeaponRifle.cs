@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class WeaponRifle : IWeapon
 {
-    public override void Fire(Vector3 targetPosition)
+    protected override void PlayBulletEffect(Vector3 targetPoisition)
     {
-        Debug.Log("显示特效 Rifle");
-        Debug.Log("播放声音 Rifle");
+        DoPlayBulletEffect(0.1f, targetPoisition);
+    }
+
+    protected override void PlaySound()
+    {
+        DoPlaySound("RifleShot");
+    }
+
+    protected override void SetEffectDisplayTime()
+    {
+        mEffectDisplayTime = 0.3f;
     }
 }
