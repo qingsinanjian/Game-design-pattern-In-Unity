@@ -20,7 +20,7 @@ public class DM02Bridge : MonoBehaviour
 
         ICharacter character = new SoldierCaptain();
         character.weapon = new WeaponLaser();
-        character.Attack(Vector3.one);
+        //character.Attack(Vector3.one);
     }
 }
 
