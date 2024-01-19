@@ -90,4 +90,10 @@ public class GameFacade
         mGameStateInfoUI.Release();
         mSoldierInfoUI.Release();
     }
+
+    public Vector3 GetEnemyTargetPosition()
+    {
+        //TODO
+        return Vector3.zero;
+    }
 }
