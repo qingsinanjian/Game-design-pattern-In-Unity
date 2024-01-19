@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAttrStrategy : IAttrStrategy
 {
-    public int GetCritDmg(int critRate)
+    public int GetCritDmg(float critRate)
     {
         int value = Random.Range(0, 1);
         int critDmg = 0;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IEnemy : ICharacter
+public abstract class IEnemy : ICharacter
 {
     protected EnemyFSMSystem mFSMSystem;
 
@@ -27,4 +27,16 @@ public class IEnemy : ICharacter
         mFSMSystem.currentState.Act(targets);
         mFSMSystem.currentState.Reason(targets);
     }
+
+    public override void UnderAttack(int damage)
+    {
+        base.UnderAttack(damage);
+        PlayEffect();
+        if(mAttr.currentHP <= 0)
+        {
+            Killed();
+        }
+    }
+
+    protected abstract void PlayEffect();
 }

@@ -7,7 +7,7 @@ public abstract class IWeapon
 {
     protected int mAtk;
     protected float mAtkRange;
-    protected int mAtkPlusValue;
+    //protected int mAtkPlusValue;
 
     protected GameObject mGameObject;
     protected ICharacter mOwner;
@@ -25,6 +25,11 @@ public abstract class IWeapon
         {
             return mAtkRange;
         }
+    }
+
+    public int atk
+    {
+        get { return mAtk; }
     }
 
     public void Update()

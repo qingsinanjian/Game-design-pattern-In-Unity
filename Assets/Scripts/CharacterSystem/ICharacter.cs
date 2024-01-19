@@ -31,12 +31,32 @@ public abstract class ICharacter
         return mWeapon.AtkRange;
     }
 
+    public void Update()
+    {
+        mWeapon.Update();
+    }
+
+    public abstract void UpdateFSMAI(List<ICharacter> targets);
+
     public void Attack(ICharacter target)
     {
-        if (mWeapon != null)
-        {
-            mWeapon.Fire(target.Position);
-        }
+        mWeapon.Fire(target.Position);
+        mGameObject.transform.LookAt(target.Position);
+        PlayAnim("attack");
+        target.UnderAttack(mWeapon.atk + mAttr.critValue);
+    }
+
+    public virtual void UnderAttack(int damage)
+    {
+        mAttr.TakeDamage(damage);
+        //被攻击的效果 音效 视效 只有敌人有
+
+        //死亡效果 音效 视效 只有战士有
+    }
+
+    public void Killed()
+    {
+        //TODO
     }
 
     public void PlayAnim(string aniName)
@@ -47,6 +67,19 @@ public abstract class ICharacter
     public void MoveTo(Vector3 targetPosition)
     {
         mNavAgent.SetDestination(targetPosition);
+        PlayAnim("move");
+    }
+    protected void DoPlayEffect(string effectName)
+    {
+        //第一步 加载特效 TODO
+        GameObject effectGO;
+        //控制销毁 TODO
+    }
+    public void DoPlaySound(string soundName)
+    {
+        AudioClip clip = null;//TODO
+        mAudio.clip = clip;
+        mAudio.Play();
     }
 
 }

@@ -13,7 +13,36 @@ public class ICharacterAttr
 
     protected int mLv;
     protected float mCritRate;//暴击率0-1
+    protected int mDmgDescValue;
+
+    public ICharacterAttr(IAttrStrategy strategy)
+    {
+        mStrategy = strategy;
+        mDmgDescValue = mStrategy.GetDmgDescValue(mLv);
+        mCurrentHP = mMaxHP + mStrategy.GetExtraHPValue(mLv);
+    }
     //增加的最大血量 抵御的伤害值 暴击增加的伤害
 
     protected IAttrStrategy mStrategy;
+
+    public int critValue
+    {
+        get { return mStrategy.GetCritDmg(mCritRate); }
+    }
+
+    public int dmgDescValue
+    {
+        get { return mDmgDescValue; }
+    }
+
+    public int currentHP
+    {
+        get { return mCurrentHP; }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        damage -= dmgDescValue;
+        mCurrentHP -= damage;
+    }
 }
