@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum WeaponType
+{
+    Gun,
+    Rifle,
+    Rocket,
+}
+
 public abstract class IWeapon
 {
     protected int mAtk;
@@ -30,6 +37,28 @@ public abstract class IWeapon
     public int atk
     {
         get { return mAtk; }
+    }
+
+    public IWeapon(int atk, float atkRange, GameObject gameObject)
+    {
+        mAtk = atk;
+        mAtkRange = atkRange;
+        mGameObject = gameObject;
+        Transform effect = mGameObject.transform.Find("Effect");
+        mParticle = effect.GetComponent<ParticleSystem>();
+        mLineRenderer = mParticle.GetComponent<LineRenderer>();
+        mLight = mParticle.GetComponent<Light>();
+        mAudio = mParticle.GetComponent<AudioSource>();
+    }
+
+    public ICharacter owner
+    {
+        set { mOwner = value; }
+    }
+
+    public GameObject gameObject
+    {
+        get { return mGameObject; }
     }
 
     public void Update()

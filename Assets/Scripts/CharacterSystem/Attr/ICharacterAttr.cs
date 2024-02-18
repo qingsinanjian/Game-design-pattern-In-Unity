@@ -10,14 +10,21 @@ public class ICharacterAttr
 
     protected int mCurrentHP;
     protected string mIconSprite;
+    protected string mPrefabName;
 
     protected int mLv;
     protected float mCritRate;//±©»÷ÂÊ0-1
     protected int mDmgDescValue;
 
-    public ICharacterAttr(IAttrStrategy strategy)
+    public ICharacterAttr(IAttrStrategy strategy, string name, int maxHP, float moveSpeed, string iconSprite, string prefabName)
     {
         mStrategy = strategy;
+        mName = name;
+        mMaxHP = maxHP;
+        mMoveSpeed = moveSpeed;
+        mIconSprite = iconSprite;
+        mPrefabName = prefabName;
+
         mDmgDescValue = mStrategy.GetDmgDescValue(mLv);
         mCurrentHP = mMaxHP + mStrategy.GetExtraHPValue(mLv);
     }

@@ -9,6 +9,11 @@ public class SoldierAttrStrategy : IAttrStrategy
         return 0;
     }
 
+    public int GetCritDmg(float critRate)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public int GetDmgDescValue(int lv)
     {
         return (lv - 1) * 5;

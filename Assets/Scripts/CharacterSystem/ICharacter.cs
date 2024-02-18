@@ -11,7 +11,18 @@ public abstract class ICharacter
     protected AudioSource mAudio;
     protected Animation mAnimation;
     protected IWeapon mWeapon;
-    public IWeapon weapon { set { mWeapon = value; } }
+    public IWeapon weapon
+    {
+        set
+        {
+            mWeapon = value;
+            mWeapon.owner = this;
+            GameObject child = UnityTool.FindChild(mGameObject, "weapon-point");
+            UnityTool.Attach(child, mWeapon.gameObject);
+        }
+    }
+
+    public ICharacterAttr attr { set { mAttr = value; } }
 
     public Vector3 Position
     {
@@ -23,6 +34,17 @@ public abstract class ICharacter
                 return Vector3.zero;
             }
             return mGameObject.transform.position;
+        }
+    }
+
+    public GameObject gameObject
+    {
+        set
+        {
+            mGameObject = value;
+            mNavAgent = mGameObject.GetComponent<NavMeshAgent>();
+            mAudio = mGameObject.GetComponent<AudioSource>();
+            mAnimation = mGameObject.GetComponentInChildren<Animation>();
         }
     }
 
