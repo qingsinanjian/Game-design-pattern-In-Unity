@@ -16,9 +16,10 @@ public class ICharacterAttr
     protected float mCritRate;//±©»÷ÂÊ0-1
     protected int mDmgDescValue;
 
-    public ICharacterAttr(IAttrStrategy strategy, string name, int maxHP, float moveSpeed, string iconSprite, string prefabName)
+    public ICharacterAttr(IAttrStrategy strategy, int lv, string name, int maxHP, float moveSpeed, string iconSprite, string prefabName)
     {
         mStrategy = strategy;
+        mLv = lv;
         mName = name;
         mMaxHP = maxHP;
         mMoveSpeed = moveSpeed;

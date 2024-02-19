@@ -107,7 +107,7 @@ public abstract class IWeapon
     protected void DoPlaySound(string clipName)
     {
         //≤•∑≈…˘“Ù
-        AudioClip clip = null;//TODO
+        AudioClip clip = FactoryManager.assetFactory.LoadAudioClip(clipName);
         mAudio.clip = clip;
         mAudio.Play();
     }

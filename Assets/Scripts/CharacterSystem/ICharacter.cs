@@ -94,12 +94,14 @@ public abstract class ICharacter
     protected void DoPlayEffect(string effectName)
     {
         //第一步 加载特效 TODO
-        GameObject effectGO;
+        GameObject effectGO = FactoryManager.assetFactory.LoadEffect(effectName);
+        effectGO.transform.position = Position;
         //控制销毁 TODO
+        effectGO.AddComponent<DestroyForTime>();
     }
     public void DoPlaySound(string soundName)
     {
-        AudioClip clip = null;//TODO
+        AudioClip clip = FactoryManager.assetFactory.LoadAudioClip(soundName);
         mAudio.clip = clip;
         mAudio.Play();
     }
