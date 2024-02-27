@@ -12,8 +12,7 @@ public enum WeaponType
 
 public abstract class IWeapon
 {
-    protected int mAtk;
-    protected float mAtkRange;
+    protected WeaponBaseAttr mBaseAttr;
     //protected int mAtkPlusValue;
 
     protected GameObject mGameObject;
@@ -26,23 +25,22 @@ public abstract class IWeapon
 
     protected float mEffectDisplayTime;
 
-    public float AtkRange
+    public float atkRange
     {
         get
         {
-            return mAtkRange;
+            return mBaseAttr.atkRange;
         }
     }
 
     public int atk
     {
-        get { return mAtk; }
+        get { return mBaseAttr.atk; }
     }
 
-    public IWeapon(int atk, float atkRange, GameObject gameObject)
+    public IWeapon(WeaponBaseAttr baseAttr, GameObject gameObject)
     {
-        mAtk = atk;
-        mAtkRange = atkRange;
+        mBaseAttr = baseAttr;
         mGameObject = gameObject;
         Transform effect = mGameObject.transform.Find("Effect");
         mParticle = effect.GetComponent<ParticleSystem>();

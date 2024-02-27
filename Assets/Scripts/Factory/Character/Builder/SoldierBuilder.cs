@@ -11,42 +11,9 @@ public class SoldierBuilder : ICharacterBuilder
 
     public override void AddCharacterAttr()
     {
-        string name = "";
-        int maxHP = 0;
-        float moveSpeed = 0;
-
-        string iconSprite = "";
-
-        if (mT == typeof(SoldierCaptain))
-        {
-            name = "上尉士兵";
-            maxHP = 100;
-            moveSpeed = 3;
-            iconSprite = "CaptainIcon";
-            mPrefabName = "Soldier1";
-        }
-        else if (mT == typeof(SoldierSergeant))
-        {
-            name = "中士士兵";
-            maxHP = 90;
-            moveSpeed = 3;
-            iconSprite = "SergeantIcon";
-            mPrefabName = "Soldier3";
-        }
-        else if (mT == typeof(SoldierRookie))
-        {
-            name = "新手士兵";
-            maxHP = 80;
-            moveSpeed = 2.5f;
-            iconSprite = "RookieIcon";
-            mPrefabName = "Soldier2";
-        }
-        else
-        {
-            Debug.LogError($"类型{mT}不属于Soldier，无法创建战士");
-        }
-
-        ICharacterAttr attr = new SoldierAttr(new SoldierAttrStrategy(), mLv, name, maxHP, moveSpeed, iconSprite, mPrefabName);
+        CharacterBaseAttr baseAttr = FactoryManager.attrFactory.GetCharacterBaseAttr(mT);
+        mPrefabName = baseAttr.prefabName;
+        ICharacterAttr attr = new SoldierAttr(new SoldierAttrStrategy(), mLv, baseAttr);
         mCharacter.attr = attr;
     }
 

@@ -11,42 +11,9 @@ public class EnemyBuilder : ICharacterBuilder
 
     public override void AddCharacterAttr()
     {
-        string name = "";
-        int maxHP = 0;
-        float moveSpeed = 0;
-
-        string iconSprite = "";
-
-        if (mT == typeof(EnemyElf))
-        {
-            name = "精灵";
-            maxHP = 100;
-            moveSpeed = 3;
-            iconSprite = "ElfIcon";
-            mPrefabName = "Enemy1";
-        }
-        else if (mT == typeof(EnemyOgre))
-        {
-            name = "怪物";
-            maxHP = 120;
-            moveSpeed = 4;
-            iconSprite = "OgreIcon";
-            mPrefabName = "Enemy2";
-        }
-        else if (mT == typeof(EnemyTroll))
-        {
-            name = "巨魔";
-            maxHP = 200;
-            moveSpeed = 1;
-            iconSprite = "TrollIcon";
-            mPrefabName = "Enemy3";
-        }
-        else
-        {
-            Debug.LogError($"类型{mT}不属于Soldier，无法创建战士");
-        }
-
-        ICharacterAttr attr = new EnemyAttr(new EnemyAttrStrategy(), mLv, name, maxHP, moveSpeed, iconSprite, mPrefabName);
+        CharacterBaseAttr baseAttr = FactoryManager.attrFactory.GetCharacterBaseAttr(mT);
+        mPrefabName = baseAttr.prefabName;
+        ICharacterAttr attr = new EnemyAttr(new EnemyAttrStrategy(), mLv, baseAttr);
         mCharacter.attr = attr;
     }
 

@@ -4,30 +4,18 @@ using UnityEngine;
 
 public class ICharacterAttr
 {
-    protected string mName;
-    protected int mMaxHP;
-    protected float mMoveSpeed;
-
-    protected int mCurrentHP;
-    protected string mIconSprite;
-    protected string mPrefabName;
-
+    protected CharacterBaseAttr mBaseAttr;
     protected int mLv;
-    protected float mCritRate;//暴击率0-1
+    protected int mCurrentHP;
     protected int mDmgDescValue;
 
-    public ICharacterAttr(IAttrStrategy strategy, int lv, string name, int maxHP, float moveSpeed, string iconSprite, string prefabName)
+    public ICharacterAttr(IAttrStrategy strategy, int lv, CharacterBaseAttr baseAttr)
     {
         mStrategy = strategy;
         mLv = lv;
-        mName = name;
-        mMaxHP = maxHP;
-        mMoveSpeed = moveSpeed;
-        mIconSprite = iconSprite;
-        mPrefabName = prefabName;
-
+        mBaseAttr = baseAttr;
         mDmgDescValue = mStrategy.GetDmgDescValue(mLv);
-        mCurrentHP = mMaxHP + mStrategy.GetExtraHPValue(mLv);
+        mCurrentHP = baseAttr.maxHP + mStrategy.GetExtraHPValue(mLv);
     }
     //增加的最大血量 抵御的伤害值 暴击增加的伤害
 
@@ -35,7 +23,7 @@ public class ICharacterAttr
 
     public int critValue
     {
-        get { return mStrategy.GetCritDmg(mCritRate); }
+        get { return mStrategy.GetCritDmg(mBaseAttr.critRate); }
     }
 
     public int dmgDescValue

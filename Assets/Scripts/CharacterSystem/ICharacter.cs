@@ -50,7 +50,7 @@ public abstract class ICharacter
 
     public float GetAtkRange()
     {
-        return mWeapon.AtkRange;
+        return mWeapon.atkRange;
     }
 
     public void Update()
