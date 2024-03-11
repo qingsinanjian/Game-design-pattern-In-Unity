@@ -62,9 +62,9 @@ public static class FactoryManager
     {
         get
         {
-            if (mAssetFactory == null)
+            if (mAttrFactory == null)
             {
-                mAssetFactory = new ResourcesAssetFactory();
+                mAttrFactory = new AttrFactory();
             }
             return mAttrFactory;
         }

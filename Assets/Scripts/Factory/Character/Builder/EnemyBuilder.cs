@@ -24,6 +24,11 @@ public class EnemyBuilder : ICharacterBuilder
         mCharacter.gameObject = characterGO;
     }
 
+    public override void AddInCharacterSystem()
+    {
+        GameFacade.Instance.AddEnemy(mCharacter as IEnemy);
+    }
+
     public override void AddWeapon()
     {
         //添加武器

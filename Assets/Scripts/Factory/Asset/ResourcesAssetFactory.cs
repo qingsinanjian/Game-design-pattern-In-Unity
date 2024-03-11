@@ -13,7 +13,7 @@ public class ResourcesAssetFactory : IAssetFactory
 
     public AudioClip LoadAudioClip(string name)
     {
-        return LoadAsset(AudioPath + name) as AudioClip;
+        return Resources.Load<AudioClip>(AudioPath + name);
     }
 
     public GameObject LoadEffect(string name)
@@ -33,7 +33,7 @@ public class ResourcesAssetFactory : IAssetFactory
 
     public Sprite LoadSprite(string name)
     {
-        return LoadAsset(SpritePath + name) as Sprite;
+        return Resources.Load<Sprite>(SpritePath + name);
     }
 
     public GameObject LoadWeapon(string name)
