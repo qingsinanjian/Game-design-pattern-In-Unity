@@ -11,6 +11,10 @@ public abstract class ICharacter
     protected AudioSource mAudio;
     protected Animation mAnimation;
     protected IWeapon mWeapon;
+
+    protected bool mIsKilled = false;
+    protected bool mCanDestroy = false;
+    protected float mDestroyTimer = 2f;
     public IWeapon weapon
     {
         set
@@ -48,6 +52,11 @@ public abstract class ICharacter
         }
     }
 
+    public bool canDestroy
+    {
+        get { return mCanDestroy; }
+    }
+
     public float GetAtkRange()
     {
         return mWeapon.atkRange;
@@ -55,6 +64,14 @@ public abstract class ICharacter
 
     public void Update()
     {
+        if (mIsKilled)
+        {
+            mDestroyTimer -= Time.deltaTime;
+            if(mDestroyTimer <= 0)
+            {
+                mCanDestroy = true;
+            }
+        }
         mWeapon.Update();
     }
 
@@ -78,7 +95,13 @@ public abstract class ICharacter
 
     public void Killed()
     {
-        //TODO
+        mIsKilled = true;
+        mNavAgent.isStopped = true;
+    }
+
+    public void Release()
+    {
+        GameObject.Destroy(mGameObject);
     }
 
     public void PlayAnim(string aniName)

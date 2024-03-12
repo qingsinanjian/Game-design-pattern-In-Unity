@@ -19,7 +19,7 @@ public class SoldierChaseState : ISoldierState
 
     public override void Reason(List<ICharacter> targets)
     {
-        if(targets != null && targets.Count > 0)
+        if(targets == null || targets.Count == 0)
         {
             mFSM.PerformTransition(SoldierTransition.NoEnemy);
             return;

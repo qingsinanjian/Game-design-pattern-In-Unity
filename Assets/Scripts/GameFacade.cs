@@ -93,8 +93,7 @@ public class GameFacade
 
     public Vector3 GetEnemyTargetPosition()
     {
-        //TODO
-        return Vector3.zero;
+        return mStageSystem.targetPosotion;
     }
 
     public void ShowCampInfo(ICamp camp)
@@ -110,5 +109,25 @@ public class GameFacade
     public void AddEnemy(IEnemy enemy)
     {
         mCharacterSystem.AddEnemy(enemy);
+    }
+
+    public bool TakeEnergy(int value)
+    {
+        return mEnergySystem.TakeEnergy(value);
+    }
+
+    public void RecycleEnergy(int value)
+    {
+        mEnergySystem.Recycle(value);
+    }
+
+    public void ShowMsg(string msg)
+    {
+        mGameStateInfoUI.ShowMessage(msg);
+    }
+
+    public void UpdateEnergySlider(int nowEnergy, int maxEnergy)
+    {
+        mGameStateInfoUI.UpdateEnergySlider(nowEnergy, maxEnergy);
     }
 }

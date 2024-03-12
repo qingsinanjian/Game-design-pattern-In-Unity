@@ -14,6 +14,10 @@ public class GameStateInfoUI : IBaseUI
     private GameObject mGameOverUI;
     private Text mMessage;
     private Slider mEnergySlider;
+    private Text mEnergyText;
+
+    private float mMsgTimer = 0;
+    private int mMsgTime = 2;
 
     public override void Init()
     {
@@ -37,7 +41,33 @@ public class GameStateInfoUI : IBaseUI
         mGameOverUI = UnityTool.FindChild(mRootUI, "GameOver");
         mMessage = UITool.FindChild<Text>(mRootUI, "Message");
         mEnergySlider = UITool.FindChild<Slider>(mRootUI, "EnergySlider");
-
+        mMessage.text = "";
+        mEnergyText = UITool.FindChild<Text>(mRootUI, "EnergyLable");
         mGameOverUI.SetActive(false);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        if(mMsgTimer > 0)
+        {
+            mMsgTimer -= Time.deltaTime;
+            if(mMsgTimer <= 0)
+            {
+                mMessage.text = "";
+            }
+        }
+    }
+
+    public void ShowMessage(string msg)
+    {
+        mMessage.text = msg;
+        mMsgTimer = mMsgTime;
+    }
+
+    public void UpdateEnergySlider(int nowEnergy, int maxEnergy)
+    {
+        mEnergySlider.value = (float)nowEnergy / maxEnergy;
+        mEnergyText.text = $"({nowEnergy}/{maxEnergy})";
     }
 }

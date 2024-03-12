@@ -11,7 +11,7 @@ public class SoldierAttrStrategy : IAttrStrategy
 
     public int GetCritDmg(float critRate)
     {
-        throw new System.NotImplementedException();
+        return 0;
     }
 
     public int GetDmgDescValue(int lv)

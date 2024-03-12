@@ -14,6 +14,7 @@ public class SoldierCamp : ICamp
         mWeaponType = weaponType;
         mLv = lv;
         mEnergyCostStrategy = new SoldierEnergyCostStrategy();
+        UpdateEnergyCost();
     }
 
     public override int lv

@@ -15,7 +15,7 @@ public class EnemyAttackState : IEnemyState
 
     public override void Act(List<ICharacter> targets)
     {
-        if (targets == null && targets.Count == 0) return;
+        if (targets == null || targets.Count == 0) return;
         mAttackTimer += Time.deltaTime;
         if(mAttackTimer > mAttackTime)
         {
@@ -26,7 +26,7 @@ public class EnemyAttackState : IEnemyState
 
     public override void Reason(List<ICharacter> targets)
     {
-        if (targets == null && targets.Count == 0)
+        if (targets == null || targets.Count == 0)
         {
             mFSM.PerformTransition(EnemyTransition.LostSoldier);
         }
