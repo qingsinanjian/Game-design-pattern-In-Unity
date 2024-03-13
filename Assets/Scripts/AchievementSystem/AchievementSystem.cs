@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArchievementSystem : IGameSystem
+public class AchievementSystem : IGameSystem
 {
     private int mEnemyKilledCount = 0;
     private int mSoldierKilledCount = 0;
@@ -11,9 +11,9 @@ public class ArchievementSystem : IGameSystem
     public override void Init()
     {
         base.Init();
-        mFacade.RegisterObserver(GameEventType.EnemyKilled, new EnemyKilledObserverArchievement(this));
-        mFacade.RegisterObserver(GameEventType.SoldierKilled, new SoldierKilledObserverArchievement(this));
-        mFacade.RegisterObserver(GameEventType.NewStage, new NewStageObserverArchievement(this));
+        mFacade.RegisterObserver(GameEventType.EnemyKilled, new EnemyKilledObserverAchievement(this));
+        mFacade.RegisterObserver(GameEventType.SoldierKilled, new SoldierKilledObserverAchievement(this));
+        mFacade.RegisterObserver(GameEventType.NewStage, new NewStageObserverAchievement(this));
     }
 
     public void AddEnemyKilledCount(int number = 1)

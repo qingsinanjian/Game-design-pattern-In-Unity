@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewStageObserverArchievement : IGameEventObserver
+public class NewStageObserverAchievement : IGameEventObserver
 {
     private NewStageSubject mSubject;
-    private ArchievementSystem mArchSystem;
-    public NewStageObserverArchievement(ArchievementSystem mArchSystem)
+    private AchievementSystem mAchSystem;
+    public NewStageObserverAchievement(AchievementSystem mAchSystem)
     {
-        this.mArchSystem = mArchSystem;
+        this.mAchSystem = mAchSystem;
     }
     public override void SetSubject(IGameEventSubject subject)
     {
@@ -17,7 +17,7 @@ public class NewStageObserverArchievement : IGameEventObserver
 
     public override void Update()
     {
-        mArchSystem.SetMaxStageLv(mSubject.stageCount);
+        mAchSystem.SetMaxStageLv(mSubject.stageCount);
     }
 }
 

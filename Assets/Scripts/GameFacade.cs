@@ -22,7 +22,7 @@ public class GameFacade
         get { return mIsGameOver; }
     }
 
-    private ArchievementSystem mArchievementSystem;
+    private AchievementSystem mAchievementSystem;
     private CampSystem mCampSystem;
     private CharacterSystem mCharacterSystem;
     private EnergySystem mEnergySystem;
@@ -36,7 +36,7 @@ public class GameFacade
 
     public void Init()
     {
-        mArchievementSystem = new ArchievementSystem();
+        mAchievementSystem = new AchievementSystem();
         mCampSystem = new CampSystem();
         mCharacterSystem = new CharacterSystem();
         mEnergySystem = new EnergySystem();
@@ -48,7 +48,7 @@ public class GameFacade
         mGameStateInfoUI = new GameStateInfoUI();
         mSoldierInfoUI = new SoldierInfoUI();
 
-        mArchievementSystem.Init();
+        mAchievementSystem.Init();
         mCampSystem.Init();
         mCharacterSystem.Init();
         mEnergySystem.Init();
@@ -63,7 +63,7 @@ public class GameFacade
 
     public void Update()
     {
-        mArchievementSystem.Update();
+        mAchievementSystem.Update();
         mCampSystem.Update();
         mCharacterSystem.Update();
         mEnergySystem.Update();
@@ -78,7 +78,7 @@ public class GameFacade
 
     public void Release()
     {
-        mArchievementSystem.Release();
+        mAchievementSystem.Release();
         mCampSystem.Release();
         mCharacterSystem.Release();
         mEnergySystem.Release();
