@@ -57,6 +57,8 @@ public abstract class ICharacter
         get { return mCanDestroy; }
     }
 
+    public bool isKilled { get { return mIsKilled; } }
+
     public float GetAtkRange()
     {
         return mWeapon.atkRange;
@@ -76,6 +78,8 @@ public abstract class ICharacter
     }
 
     public abstract void UpdateFSMAI(List<ICharacter> targets);
+
+    public abstract void RunVisitor(ICharacterVisitor visitor);
 
     public void Attack(ICharacter target)
     {

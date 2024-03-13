@@ -36,6 +36,11 @@ public abstract class IEnemy : ICharacter
         mFSMSystem.currentState.Reason(targets);
     }
 
+    public override void RunVisitor(ICharacterVisitor visitor)
+    {
+        visitor.VisitEnemy(this);
+    }
+
     public override void UnderAttack(int damage)
     {
         if(mIsKilled) return;

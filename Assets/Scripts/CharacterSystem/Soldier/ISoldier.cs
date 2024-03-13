@@ -26,6 +26,11 @@ public abstract class ISoldier : ICharacter
         mFSMSystem.currentState.Act(targets);
     }
 
+    public override void RunVisitor(ICharacterVisitor visitor)
+    {
+        visitor.VisitSoldier(this);
+    }
+
     private void MakeFSM()
     {
         mFSMSystem = new SoldierFSMSystem();

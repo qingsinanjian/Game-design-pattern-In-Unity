@@ -160,4 +160,9 @@ public class GameFacade
         AchievementMemento memento = mAchievementSystem.CreateMemento();
         memento.SaveData();
     }
+
+    public void RunVisitor(ICharacterVisitor visitor)
+    {
+        mCharacterSystem.RunVisitor(visitor);
+    }
 }
