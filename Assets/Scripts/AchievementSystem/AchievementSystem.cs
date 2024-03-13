@@ -37,17 +37,25 @@ public class AchievementSystem : IGameSystem
         Debug.Log("MaxStageLv" + mMaxStageLv);
     }
 
-    private void SaveData()
+    public AchievementMemento CreateMemento()
     {
-        PlayerPrefs.SetInt("EnemyKilledCount", mEnemyKilledCount);
-        PlayerPrefs.SetInt("SoldierKilledCount", mSoldierKilledCount);
-        PlayerPrefs.SetInt("MaxStageLv", mMaxStageLv);
+        //PlayerPrefs.SetInt("EnemyKilledCount", mEnemyKilledCount);
+        //PlayerPrefs.SetInt("SoldierKilledCount", mSoldierKilledCount);
+        //PlayerPrefs.SetInt("MaxStageLv", mMaxStageLv);
+        AchievementMemento memento = new AchievementMemento();
+        memento.enemyKilledCount = mEnemyKilledCount;
+        memento.soldierKilledCount = mSoldierKilledCount;
+        memento.maxStageLv = mMaxStageLv;
+        return memento;
     }
 
-    private void LoadData()
+    public void SetMemento(AchievementMemento memento)
     {
-        mEnemyKilledCount = PlayerPrefs.GetInt("EnemyKilledCount");
-        mSoldierKilledCount = PlayerPrefs.GetInt("SoldierKilledCount");
-        mMaxStageLv = PlayerPrefs.GetInt("MaxStageLv");
+        //mEnemyKilledCount = PlayerPrefs.GetInt("EnemyKilledCount");
+        //mSoldierKilledCount = PlayerPrefs.GetInt("SoldierKilledCount");
+        //mMaxStageLv = PlayerPrefs.GetInt("MaxStageLv");
+        mEnemyKilledCount = memento.enemyKilledCount;
+        mSoldierKilledCount = memento.soldierKilledCount;
+        mMaxStageLv = memento.maxStageLv;
     }
 }

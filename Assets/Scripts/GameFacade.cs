@@ -59,6 +59,8 @@ public class GameFacade
         mGamePauseUI.Init();
         mGameStateInfoUI.Init();
         mSoldierInfoUI.Init();
+
+        LoadMemento();
     }
 
     public void Update()
@@ -89,6 +91,8 @@ public class GameFacade
         mGamePauseUI.Release();
         mGameStateInfoUI.Release();
         mSoldierInfoUI.Release();
+
+        CreateMemento();
     }
 
     public Vector3 GetEnemyTargetPosition()
@@ -142,5 +146,18 @@ public class GameFacade
     public void NotifySubject(GameEventType eventType)
     {
         mGameEventSystem.NotifySubject(eventType);
+    }
+
+    public void LoadMemento()
+    {
+        AchievementMemento memento = new AchievementMemento();
+        memento.LoadData();
+        mAchievementSystem.SetMemento(memento);
+    }
+
+    public void CreateMemento()
+    {
+        AchievementMemento memento = mAchievementSystem.CreateMemento();
+        memento.SaveData();
     }
 }
