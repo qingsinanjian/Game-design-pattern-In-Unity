@@ -93,7 +93,7 @@ public abstract class ICharacter
         //死亡效果 音效 视效 只有战士有
     }
 
-    public void Killed()
+    public virtual void Killed()
     {
         mIsKilled = true;
         mNavAgent.isStopped = true;
