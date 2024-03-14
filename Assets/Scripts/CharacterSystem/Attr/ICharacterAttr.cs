@@ -20,6 +20,8 @@ public class ICharacterAttr
     //增加的最大血量 抵御的伤害值 暴击增加的伤害
 
     protected IAttrStrategy mStrategy;
+    public IAttrStrategy attrStrategy { get { return mStrategy; } }
+    public CharacterBaseAttr baseAttr { get { return mBaseAttr; } }
 
     public int critValue
     {

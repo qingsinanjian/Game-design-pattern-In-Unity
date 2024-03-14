@@ -45,6 +45,9 @@ public class SoldierEnergyCostStrategy : IEnergyCostStrategy
             case SoldierType.Captain:
                 energy = 20;
                 break;
+            case SoldierType.Captive:
+                energy = 10;
+                break;
             default:
                 Debug.LogError($"无法获取士兵类型为{st}训练所消耗的能量值");
                 break;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CampSystem : IGameSystem
 {
     private Dictionary<SoldierType, SoldierCamp> mSoldierCamps = new Dictionary<SoldierType, SoldierCamp>();
+    private Dictionary<EnemyType, CaptiveCamp> mCaptiveCamps = new Dictionary<EnemyType, CaptiveCamp>();
 
     public override void Init()
     {
@@ -12,6 +13,8 @@ public class CampSystem : IGameSystem
         InitCamp(SoldierType.Rookie);
         InitCamp(SoldierType.Sergeant);
         InitCamp(SoldierType.Captain);
+
+        InitCamp(EnemyType.Elf);
     }
 
     private void InitCamp(SoldierType soldierType)
@@ -56,9 +59,43 @@ public class CampSystem : IGameSystem
         mSoldierCamps.Add(soldierType, soldierCamp);
     }
 
+    private void InitCamp(EnemyType enemyType)
+    {
+        GameObject gameObject = null;
+        string gameObjectName = null;
+        string name = null;
+        string icon = null;
+        Vector3 position = Vector3.zero;
+        float trainTime = 0.0f;
+        switch (enemyType)
+        {
+            case EnemyType.Elf:
+                gameObjectName = "CaptiveCamp_Elf";
+                name = "俘兵营";
+                icon = "CaptiveCamp";
+                trainTime = 3f;
+                break;
+            default:
+                Debug.LogError($"无法根据敌人类型{enemyType}初始化兵营");
+                break;
+        }
+        gameObject = GameObject.Find(gameObjectName);
+        position = UnityTool.FindChild(gameObject, "TrainPoint").transform.position;
+        CaptiveCamp captiveCamp = new CaptiveCamp(gameObject, name, icon, enemyType, position, trainTime);
+        CampOnClick campOnClick = gameObject.AddComponent<CampOnClick>();
+        campOnClick.camp = captiveCamp;
+
+        mCaptiveCamps.Add(enemyType, captiveCamp);
+    }
+
     public override void Update()
     {
         foreach (SoldierCamp camp in mSoldierCamps.Values)
+        {
+            camp.Update();
+        }
+
+        foreach (CaptiveCamp camp in mCaptiveCamps.Values)
         {
             camp.Update();
         }

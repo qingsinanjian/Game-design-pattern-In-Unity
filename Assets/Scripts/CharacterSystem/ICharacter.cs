@@ -24,9 +24,13 @@ public abstract class ICharacter
             GameObject child = UnityTool.FindChild(mGameObject, "weapon-point");
             UnityTool.Attach(child, mWeapon.gameObject);
         }
+        get
+        {
+            return mWeapon;
+        }
     }
 
-    public ICharacterAttr attr { set { mAttr = value; } }
+    public ICharacterAttr attr { set { mAttr = value; } get { return mAttr; } }
 
     public Vector3 Position
     {
@@ -49,6 +53,11 @@ public abstract class ICharacter
             mNavAgent = mGameObject.GetComponent<NavMeshAgent>();
             mAudio = mGameObject.GetComponent<AudioSource>();
             mAnimation = mGameObject.GetComponentInChildren<Animation>();
+        }
+
+        get
+        {
+            return mGameObject;
         }
     }
 
